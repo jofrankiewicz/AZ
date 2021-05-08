@@ -9,7 +9,7 @@ class Graph:
         self.perm, 
         self.n) = euclidean_metric(filename) 
 
-    def tourValue(self): #Cost of the tourvalue as described by specifications.
+    def tourValue(self): #Cost of the tour value as described by specifications.
         return sum([self.dist[i,j] for i,j in 
                     zip(self.perm, self.perm[1:]+self.perm[0:1])])
 

@@ -1,17 +1,17 @@
 import argparse
 import time
 import glob
+import argparse
 import numpy as np
 from alghoritms import Graph
 from generate_files import random_graphs
 
-
 def main():
-    print('Rozpoczęcie działania programu - podaj argumenty: ')
+    print('Rozpoczęcie działania programu rozwiązującego problem TSP')
 
     parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
 
-    parser.add_argument('-g', '--generation', dest='generation', type=bool, default=True,
+    parser.add_argument('-g', '--generation', dest='generation', type=bool, default=False,
                         help='generate graph data')
     parser.add_argument('-nv', '--n_val', dest='n_val', type=int, default=300,
                         help='number of vertices')
@@ -19,7 +19,6 @@ def main():
                         help='maximum value in graph data')
     
     args = vars(parser.parse_args())
-
     if args['generation']:
         random_graphs(args['n_val'], args['max_val'])
 
@@ -37,10 +36,9 @@ def main():
             start = time.time()
             method()
             result = g.tourValue()
-            print(name, result)
             end = time.time()
             result_time = end-start 
-            print(name, result_time)
+            print("Ilość wierzchołków: {}, Max waga: {}, Algorytm: {}, Wartość cyklu: {}, Czas: {}".format(name_details[1], name_details[2], name, result, result_time))
 
             f.write(str(name_details[1]))
             f.write(" ")
@@ -53,7 +51,6 @@ def main():
             f.write(str(result_time))
             f.write('\n')
 
-        f.close()
-    
+        f.close()  
 
 main()
