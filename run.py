@@ -13,7 +13,7 @@ def main():
 
     parser.add_argument('-g', '--generation', dest='generation', type=bool, default=False,
                         help='generate graph data')
-    parser.add_argument('-nv', '--n_val', dest='n_val', type=int, default=300,
+    parser.add_argument('-nv', '--n_val', dest='n_val', type=int, default=600,
                         help='number of vertices')
     parser.add_argument('-mv', '--max_val', dest='max_val', type=int, default=10000,
                         help='maximum value in graph data')
