@@ -2,7 +2,7 @@ import argparse
 import time
 import glob
 import argparse
-import numpy as np
+import random
 from alghoritms import Graph
 from generate_files import random_graphs
 
@@ -18,9 +18,12 @@ def main():
     parser.add_argument('-mv', '--max_val', dest='max_val', type=int, default=10000,
                         help='maximum value in graph data')
     
+  
+    random.seed(34)
     args = vars(parser.parse_args())
     if args['generation']:
         random_graphs(args['n_val'], args['max_val'])
+
 
     mylist = [f for f in glob.glob("graph*")]
 
@@ -31,7 +34,9 @@ def main():
         
         methods = [(g.twoApproximation,"2_Approximation"),
                 (g.christofide, "Christofides")]
+
         f = open("results.txt", "a")
+
         for i, (method, name) in enumerate(methods):
             start = time.time()
             method()
@@ -43,6 +48,8 @@ def main():
             f.write(str(name_details[1]))
             f.write(" ")
             f.write(str(name_details[2]))
+            f.write(" ")
+            f.write(str(name_details[3]))
             f.write(" ")
             f.write(name)
             f.write(" ")
